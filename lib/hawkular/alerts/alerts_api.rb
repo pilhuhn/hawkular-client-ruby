@@ -322,6 +322,19 @@ module Hawkular::Alerts
     def delete_event(id)
       http_delete "/events/#{id}"
     end
+
+    def delete_alerts(ids)
+
+      query = {}
+      query['alertIds'] = ids.join(',')
+      http_put '/delete', query
+    end
+
+    def delete_events(ids)
+      query = {}
+      query['eventIds'] = ids.join(',')
+      http_put '/events/delete', query
+    end
   end
 
   # Representation of one Trigger
